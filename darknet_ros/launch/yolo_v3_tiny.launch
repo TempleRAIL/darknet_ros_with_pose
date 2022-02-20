@@ -12,10 +12,16 @@
   <rosparam command="load" ns="darknet_ros" file="$(find darknet_ros)/config/ros.yaml"/>
   <rosparam command="load" ns="darknet_ros" file="$(find darknet_ros)/config/yolov3-tiny.yaml"/>
 
+  <!-- Output -->
+  <arg name="enable_opencv" default="true"/>
+  <arg name="enable_console_output" default="true"/>
+
   <!-- Start darknet and ros wrapper -->
   <node pkg="darknet_ros" type="darknet_ros" name="darknet_ros" output="screen" launch-prefix="$(arg launch_prefix)">
     <param name="weights_path"          value="$(arg yolo_weights_path)" />
     <param name="config_path"           value="$(arg yolo_config_path)" />
+    <param name="image_view/enable_opencv" value="$(arg enable_opencv)"/>
+    <param name="image_view/enable_console_output" value="$(arg enable_console_output)"/>
   </node>
 
  <!--<node name="republish" type="republish" pkg="image_transport" output="screen" 	args="compressed in:=/front_camera/image_raw raw out:=/camera/image_raw" /> -->

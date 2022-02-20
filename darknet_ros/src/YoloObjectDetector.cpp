@@ -33,11 +33,13 @@ namespace darknet_ros
         imageTransport_(nodeHandle_),
         rosBoxes_(0),
         rosBoxCounter_(0),
+
         // added by xzt:
         imagergb_sub(nodeHandle_,"/zed/zed_node/rgb_raw/image_raw_color",1),       //For depth inclussion
         pcldepth_sub(nodeHandle_,"/zed/zed_node/point_cloud/cloud_registered",1),   //For depth inclussion
         //laserscan_sub(nodeHandle_,"/scan",1),       //For depth inclussion: laser scan
         sync_1(MySyncPolicy_1(50), imagergb_sub, pcldepth_sub)        //For depth inclussion
+        
   {
     ROS_INFO("[YoloObjectDetector] Node started.");
 
